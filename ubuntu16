@@ -7,3 +7,16 @@ iptables-save >/etc/iptables/rules.v4
 #service
 systemctl status netfilter-persistent
 systemctl [status | start | reload | stop | enable] netfilter-persistent
+
+
+example access only from IP=10.10.10.10 in config file /etc/iptables/rules.v4
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [3:32]
+-A INPUT -s 10.10.10.10 -m comment --comment "Office" -j ACCEPT
+-A FORWARD -i lo -j ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+COMMIT
+
