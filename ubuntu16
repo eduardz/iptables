@@ -1,0 +1,9 @@
+# package iptables
+apt-get install iptables-persistent
+
+#save
+iptables-save >/etc/iptables/rules.v4
+
+#service
+systemctl status netfilter-persistent
+systemctl [status | start | reload | stop | enable] netfilter-persistent
