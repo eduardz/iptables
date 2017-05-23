@@ -14,7 +14,8 @@ example access only from IP=10.10.10.10 in config file /etc/iptables/rules.v4
 :INPUT DROP [0:0]
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [3:32]
--A INPUT -s 10.10.10.10 -m comment --comment "Office" -j ACCEPT
+-A INPUT -s 10.10.10.10 -m comment --comment "office-access" -j ACCEPT
+-A INPUT -p tcp  --dport 80 -m comment --comment "web-access" -j ACCEPT
 -A FORWARD -i lo -j ACCEPT
 -A INPUT -j DROP
 -A FORWARD -j DROP
